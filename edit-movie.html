@@ -1,0 +1,61 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie</title>
+    <link rel="stylesheet" href="theme.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="index.html">Homepage</a>
+        <a href="add-movie.html">Add a Movie</a>
+        <a href="signup.html">Signup</a>
+        <a href="login.html">Login</a>
+      </nav>
+    </header>
+    <main>
+      <div class="movie-info">
+        <h1>Edit Movie</h1>
+        <label>
+          Title:
+          <span><input type="text" name="title" value="Star Wars" /></span>
+        </label>
+        <label>
+          Year: <span><input type="text" name="year" value="1977" /></span>
+        </label>
+        <div class="row">
+          <label>
+            Synopsis:
+            <textarea name="synopsis">
+The Imperial Forces -- under orders from cruel Darth Vader (David Prowse) -- hold Princess Leia (Carrie Fisher) hostage, in their efforts to quell the rebellion against the Galactic Empire. Luke Skywalker (Mark Hamill) and Han Solo (Harrison Ford), captain of the Millennium Falcon, work together with the companionable droid duo R2-D2 (Kenny Baker) and C-3PO (Anthony Daniels) to rescue the beautiful princess, help the Rebel Alliance, and restore freedom and justice to the Galaxy.</textarea
+            >
+          </label>
+        </div>
+        <section>
+          <h3>Behind the Scenes:</h3>
+          <input
+            type="text"
+            name="behind-the-scenes"
+            placeholder="https://www.youtube.com?w=85MK2GDkoxo"
+            value="https://www.youtube.com?w=85MK2GDkoxo"
+          />
+        </section>
+        <section>
+          <h3>Cast Interviews:</h3>
+          <input
+            type="text"
+            name="cast-interview"
+            placeholder="https://www.youtube.com?w=6Oa2rx37WAo"
+            value="https://www.youtube.com?w=6Oa2rx37WAo"
+          />
+        </section>
+        <footer>
+          <a href="movie.html"><button>Save</button></a>
+        </footer>
+      </div>
+    </main>
+    <footer></footer>
+  </body>
+</html>
