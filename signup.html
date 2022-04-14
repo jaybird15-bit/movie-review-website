@@ -1,0 +1,47 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Signup</title>
+  </head>
+  <body>
+    <form>
+      <div class="error"></div>
+      <div class="message"></div>
+      <input type="text" name="email" />
+      <input type="password" name="password" />
+      <button>Signup</button>
+    </form>
+    <script>
+      const form = document.querySelector("form");
+      const error = form.querySelector(".error");
+      const message = form.querySelector(".message");
+
+      form.onsubmit = async (e) => {
+        // Prevent the form from reloading the page (the default)
+        e.preventDefault();
+
+        const email = document.querySelector("[name='email']").value;
+        const password = document.querySelector("[name='password']").value;
+
+        const response = await fetch("api/signup.php", {
+          method: "POST",
+          body: JSON.stringify({
+            email: email,
+            password: password,
+          }),
+        });
+        // Parse from a JSON to an object.
+        const data = await response.json();
+
+        // Was there an error?
+        if (!response.ok) {
+          error.innerHTML = data.message;
+        } else {
+          message.innerHTML = data.message;
+        }
+      };
+    </script>
+  </body>
+</html>
