@@ -10,13 +10,15 @@
     <header>
       <nav>
         <a href="index.html">Homepage</a>
-        <a href="add-movie.html">Add a Movie</a>
         <a href="signup.html">Signup</a>
         <a href="login.html">Login</a>
+        <a href="logout.html">Logout</a>
       </nav>
     </header>
     <main>
-      <div class="movie-info">
+      <form class="movie-info">
+        <div class="error"></div>
+        <div class="message"></div>
         <h1>Add a Movie</h1>
         <label>
           Title: <span><input type="text" name="title" /></span>
@@ -49,8 +51,68 @@
         <footer>
           <button>Add</button>
         </footer>
-      </div>
+      </form>
     </main>
     <footer></footer>
+    <script>
+      (async () => {
+        async function getCurrentUser() {
+          const response = await fetch("/api/current-user.php", {
+            method: "GET",
+            credentials: "include",
+          });
+          return await response.json();
+        }
+
+        const user = await getCurrentUser();
+        if (!user) {
+          location.href = "login.html";
+          return;
+        }
+
+        const form = document.querySelector("form");
+        const error = form.querySelector(".error");
+        const message = form.querySelector(".message");
+
+        form.onsubmit = async (e) => {
+          // Prevent the form from reloading the page (the default)
+          e.preventDefault();
+          error.innerHTML = "";
+          message.innerHTML = "";
+
+          const title = document.querySelector("[name='title']").value;
+          const year = document.querySelector("[name='year']").value;
+          const synopsis = document.querySelector("[name='synopsis']").value;
+          const behindTheScenesVideoUrl = document.querySelector(
+            "[name='behind-the-scenes']"
+          ).value;
+          const castInterviewVideoUrl = document.querySelector(
+            "[name='cast-interview']"
+          ).value;
+
+          const response = await fetch("/api/add-movie.php", {
+            method: "POST",
+            credentials: "include",
+            body: JSON.stringify({
+              title: title,
+              year: year,
+              synopsis: synopsis,
+              behindTheScenesVideoUrl: behindTheScenesVideoUrl,
+              castInterviewVideoUrl: castInterviewVideoUrl,
+            }),
+          });
+          // Parse from a JSON to an object.
+          const data = await response.json();
+
+          // Was there an error?
+          if (!response.ok) {
+            error.innerHTML = data.message;
+          } else {
+            form.reset();
+            message.innerHTML = data.message;
+          }
+        };
+      })();
+    </script>
   </body>
 </html>

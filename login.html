@@ -36,6 +36,8 @@
         form.onsubmit = async (e) => {
           // Prevent the form from reloading the page (the default)
           e.preventDefault();
+          error.innerHTML = "";
+          message.innerHTML = "";
 
           const email = document.querySelector("[name='email']").value;
           const password = document.querySelector("[name='password']").value;

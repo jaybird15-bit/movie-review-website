@@ -32,6 +32,10 @@ nav a:hover {
   width: 100%;
 }
 
+.error {
+  color: red;
+}
+
 .movie-info .row > * {
   width: 100%;
 }
