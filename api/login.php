@@ -38,6 +38,10 @@ if (count($rows) > 0) {
 
     // Does the password hash match the given password?
     if (password_verify($body->password, $user["password_hash"])) {
+
+        // Log the user in (check for this later)...
+        $_SESSION["email"] = $body->email;
+
         http_response_code(200);
         echo json_encode(
             ["message" => "Login successful."]

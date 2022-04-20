@@ -9,6 +9,14 @@ try {
     error_log($e);
 }
 
+if (!isset($_SESSION["email"])) {
+    http_response_code(200);
+    echo json_encode(
+        null
+    );
+    exit();
+}
+
 $query = "
     SELECT *
     FROM
@@ -27,9 +35,11 @@ if (count($rows) > 0) {
     echo json_encode(
         $rows[0]
     );
+    exit();
 } else {
     http_response_code(200);
     echo json_encode(
         null
     );
+    exit();
 }
