@@ -57,7 +57,7 @@
     <script>
       (async () => {
         async function getCurrentUser() {
-          const response = await fetch("/api/current-user.php", {
+          const response = await fetch("api/current-user.php", {
             method: "GET",
             credentials: "include",
           });
@@ -90,7 +90,7 @@
             "[name='cast-interview']"
           ).value;
 
-          const response = await fetch("/api/add-movie.php", {
+          const response = await fetch("api/add-movie.php", {
             method: "POST",
             credentials: "include",
             body: JSON.stringify({

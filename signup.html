@@ -16,7 +16,7 @@
     <script>
       (async () => {
         async function getCurrentUser() {
-          const response = await fetch("/api/current-user.php", {
+          const response = await fetch("api/current-user.php", {
             method: "GET",
             credentials: "include",
           });
@@ -42,7 +42,7 @@
           const email = document.querySelector("[name='email']").value;
           const password = document.querySelector("[name='password']").value;
 
-          const response = await fetch("/api/signup.php", {
+          const response = await fetch("api/signup.php", {
             method: "POST",
             credentials: "include",
             body: JSON.stringify({
