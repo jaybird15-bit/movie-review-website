@@ -70,16 +70,17 @@ $query = "
         id = ?
 ";
 $statement = $mysql->prepare($query);
-$success = $statement->execute([
+$statement->bind_param(
+    "sisssi",
     $body->title,
     $body->year,
     $body->synopsis,
     $body->behindTheScenesVideoUrl,
     $body->castInterviewVideoUrl,
     $body->id
-]);
+);
 
-if (!$success) {
+if (!$statement->execute()) {
     http_response_code(500);
     echo json_encode(
         ["message" => "Something went wrong. Please try again."]

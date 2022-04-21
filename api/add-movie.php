@@ -63,15 +63,16 @@ $query = "
     VALUES( ?, ?, ?, ?, ? )
 ";
 $statement = $mysql->prepare($query);
-$success = $statement->execute([
+$statement->bind_param(
+    "sisss",
     $body->title,
     $body->year,
     $body->synopsis,
     $body->behindTheScenesVideoUrl,
     $body->castInterviewVideoUrl
-]);
+);
 
-if (!$success) {
+if (!$statement->execute()) {
     http_response_code(500);
     echo json_encode(
         ["message" => "Something went wrong. Please try again."]

@@ -22,22 +22,35 @@ if (filter_var($body->email, FILTER_VALIDATE_EMAIL) == false) {
 }
 
 $query = "
-    SELECT *
+    SELECT 
+        password_hash
     FROM
         users
     WHERE
         email = ?
 ";
 $statement = $mysql->prepare($query);
-$statement->execute([$body->email]);
-$rows = $statement->get_result()->fetch_all(MYSQLI_ASSOC);
+$statement->bind_param(
+    "s",
+    $body->email
+);
+
+if (!$statement->execute()) {
+    http_response_code(500);
+    echo json_encode(
+        ["message" => "Something went wrong. Please try again."]
+    );
+    exit();
+}
+
+$statement->bind_result($password_hash);
+$statement->fetch();
 
 // Does that user exist?
-if (count($rows) > 0) {
-    $user = $rows[0];
+if ($password_hash) {
 
     // Does the password hash match the given password?
-    if (password_verify($body->password, $user["password_hash"])) {
+    if ($body->password == $password_hash) {
 
         // Log the user in (check for this later)...
         $_SESSION["email"] = $body->email;

@@ -18,7 +18,8 @@ if (!isset($_SESSION["email"])) {
 }
 
 $query = "
-    SELECT *
+    SELECT 
+        email
     FROM
         users
     WHERE
@@ -26,14 +27,27 @@ $query = "
 ";
 
 $statement = $mysql->prepare($query);
-$statement->execute([$_SESSION["email"]]);
-$rows = $statement->get_result()->fetch_all(MYSQLI_ASSOC);
+$statement->bind_param(
+    "s",
+    $_SESSION["email"]
+);
+
+if (!$statement->execute()) {
+    http_response_code(500);
+    echo json_encode(
+        ["message" => "Something went wrong. Please try again."]
+    );
+    exit();
+}
+
+$statement->bind_result($email);
+$statement->fetch();
 
 // Is the user is logged in?
-if (count($rows) > 0) {
+if ($email) {
     http_response_code(200);
     echo json_encode(
-        $rows[0]
+        ["email" => $email]
     );
     exit();
 } else {

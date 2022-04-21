@@ -47,11 +47,24 @@ $query = "
         email = ?
 ";
 $statement = $mysql->prepare($query);
-$statement->execute([$body->email]);
-$rows = $statement->get_result()->fetch_all();
+$statement->bind_param(
+    "s",
+    $body->email
+);
+
+if (!$statement->execute()) {
+    http_response_code(500);
+    echo json_encode(
+        ["message" => "Something went wrong. Please try again."]
+    );
+    exit();
+}
+
+$count = $statement->num_rows();
+$statement->fetch();
 
 // Is the email already in use?
-if (count($rows) > 0) {
+if ($count > 0) {
     http_response_code(400);
     echo json_encode(
         ["message" => "Email already in use."]
@@ -66,7 +79,14 @@ $query = "
     VALUES( ?, ? )
 ";
 $statement = $mysql->prepare($query);
-$statement->execute([$body->email, password_hash($body->password, PASSWORD_DEFAULT)]);
+$statement->bind_param("ss", $body->email, $body->password);
+if (!$statement->execute()) {
+    http_response_code(500);
+    echo json_encode(
+        ["message" => "Something went wrong. Please try again."]
+    );
+    exit();
+}
 
 // Log the user in (check for this later)...
 $_SESSION["email"] = $body->email;
