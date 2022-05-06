@@ -1,0 +1,56 @@
+body > header {
+  background-color: rgb(49, 49, 49);
+  margin:0;
+}
+
+nav {
+  display: flex;
+}
+
+/* NOTE: Select all <a>'s inside of a <nav> */
+nav a {
+  color: white;
+  padding: 1em;
+  text-decoration: none;
+}
+
+/* NOTE: Select all <a>'s in a "hovered" state, inside of a <nav> */
+nav a:hover {
+  background-color: rgb(61, 61, 61);
+}
+
+h1{
+	font-family: 'Impact', sans-serif;
+}
+
+.toptext{
+	margin-top: 25px;
+	margin-bottom: 25px;
+}
+
+body{
+	font-family: sans-serif;
+	background-color: #FFFDED;
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+fieldset{
+	background-color: white;
+	border: 2px solid #B80000;
+	border-radius: 5px;
+}
+legend{
+	background-color: white;
+	border: 2px solid #B80000;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+input.text{
+	background-color: #EEEEEE;
+	border: 1px solid #D3D3D3;
+	border-radius: 3px;
+	padding: 12px 12px 12px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}

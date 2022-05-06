@@ -10,6 +10,7 @@ body {
 /* NOTE: Select all header(s) that are CHILDREN of the body */
 body > header {
   background-color: rgb(49, 49, 49);
+  margin: 0;
 }
 
 nav {
@@ -34,6 +35,17 @@ nav a:hover {
 
 .error {
   color: red;
+}
+
+.userForm {
+  max-width: 400px;
+  margin: auto;
+}
+
+.userForm input,
+.userForm button {
+  width: 100%;
+  padding: 0.8em;
 }
 
 .movie-info .row > * {

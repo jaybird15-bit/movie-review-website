@@ -1,0 +1,19 @@
+.titlepage {
+  margin: 0;
+  font-size: 48;
+}
+
+.posters {
+  background-color: rgb(211, 211, 211);
+}
+
+.imgallign {
+  float: left;
+  width: 21%;
+  padding: 20px;
+  border: 2px solid black;
+}
+
+body {
+  background-color: rgb(211, 211, 211);
+}
