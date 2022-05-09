@@ -23,12 +23,17 @@
         <div class="error"></div>
         <div class="message"></div>
         <h1>Add a Movie</h1>
-        <label>
+        <label class="big-label">
           Title: <span><input type="text" name="title" /></span>
         </label>
-        <label>
+        <label class="big-label">
           Year: <span><input type="text" name="year" /></span>
         </label>
+        <div class="row">
+          <label>
+            Poster URL: <span><input type="text" name="poster-url" /></span>
+          </label>
+        </div>
         <div class="row">
           <label>
             Synopsis:
@@ -86,6 +91,7 @@
           const title = document.querySelector("[name='title']").value;
           const year = document.querySelector("[name='year']").value;
           const synopsis = document.querySelector("[name='synopsis']").value;
+          const posterUrl = document.querySelector("[name='poster-url']").value;
           const behindTheScenesVideoUrl = document.querySelector(
             "[name='behind-the-scenes']"
           ).value;
@@ -99,6 +105,7 @@
             body: JSON.stringify({
               title: title,
               year: year,
+              posterUrl: posterUrl,
               synopsis: synopsis,
               behindTheScenesVideoUrl: behindTheScenesVideoUrl,
               castInterviewVideoUrl: castInterviewVideoUrl,

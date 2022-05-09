@@ -75,7 +75,7 @@ nav a:hover {
   font-weight: bold;
 }
 
-.movie-info label span input {
+.movie-info .big-label span input {
   font-size: 1em;
 }
 

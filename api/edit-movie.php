@@ -29,6 +29,15 @@ if (strlen($body->year) != 4 || !is_numeric($body->year)) {
     exit();
 }
 
+// Is the poster URL length out of range?
+if (strlen($body->posterUrl) < 1 || strlen($body->posterUrl) > 256) {
+    http_response_code(400);
+    echo json_encode(
+        ["message" => "Poster URL must be 1-256 characters."]
+    );
+    exit();
+}
+
 // Is the synposis too long?
 if (strlen($body->title) > 512) {
     http_response_code(400);
@@ -63,6 +72,7 @@ $query = "
     SET
         title = ?, 
         year = ?, 
+        posterUrl = ?, 
         synopsis = ?, 
         behind_the_scenes_video_url = ?, 
         cast_interview_video_url = ?
@@ -71,9 +81,10 @@ $query = "
 ";
 $statement = $mysql->prepare($query);
 $statement->bind_param(
-    "sisssi",
+    "sissssi",
     $body->title,
     $body->year,
+    $body->posterUrl,
     $body->synopsis,
     $body->behindTheScenesVideoUrl,
     $body->castInterviewVideoUrl,
