@@ -96,4 +96,4 @@ if (mysqli_num_rows($result) > 0) {
 }
 ?>
 
-<a href="homepage.html">Return to Homepage</a>
+<a href="index.html">Return to Homepage</a>
