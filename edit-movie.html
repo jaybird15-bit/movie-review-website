@@ -85,9 +85,32 @@
           return;
         }
 
+        async function getMovie(id) {
+          const response = await fetch("api/get-movie.php?id=" + id, {
+            method: "GET",
+            credentials: "include",
+          });
+          return await response.json();
+        }
+
+        const movie = await getMovie(id);
+        if (!movie) {
+          location.href = "index.html";
+          return;
+        }
+
         const form = document.querySelector("form");
         const error = form.querySelector(".error");
         const message = form.querySelector(".message");
+
+        document.querySelector("[name='title']").value = movie.title;
+        document.querySelector("[name='year']").value = movie.year;
+        document.querySelector("[name='poster-url']").value = movie.posterUrl;
+        document.querySelector("[name='synopsis']").value = movie.synopsis;
+        document.querySelector("[name='behind-the-scenes']").value =
+          movie.behind_the_scenes_video_url;
+        document.querySelector("[name='cast-interview']").value =
+          movie.cast_interview_video_url;
 
         form.onsubmit = async (e) => {
           // Prevent the form from reloading the page (the default)
