@@ -3,63 +3,77 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Movie Review</title>
+    <title>Movie</title>
     <link rel="stylesheet" href="reviewtheme.css" />
   </head>
   <body>
     <header>
       <nav>
-        <a href="index.html">Homepage</a>
+        <a href="homepage.html">Homepage</a>
         <a href="add-movie.html">Add a Movie</a>
+        <a href="edit-movie.html">Edit a Movie</a>
         <a href="signup.html">Signup</a>
         <a href="login.html">Login</a>
-        <a href="review.html">Add Review</a>
+        <a href="review.html">Reviews</a>
         <a href="search-movie.html">Search Movies</a>
-        <a href="logout.html">Logout</a>
       </nav>
     </header>
-    <main>
-      <h1>Add Review</h1>
+    <h1>Reviews</h1>
 
-      <form method="POST" name="review" action="review.php">
-        <fieldset>
-          <legend>Add review here</legend>
-          <input
-            type="text"
-            name="movie_name"
-            placeholder="Movie Name"
-            size="175"
-            maxlength="500"
-          />
-          <br />
-          <input
-            type="text"
-            name="review"
-            placeholder="Review"
-            size="175"
-            maxlength="500"
-          />
-          <br />
+    <form method="POST" name="review" action="review.php">
+      <fieldset>
+        <legend>Add review here</legend>
+        <input
+          type="text"
+          name="movie_name"
+          placeholder="Movie Name"
+          size="175"
+          maxlength="500"
+        />
+        <br />
+        <input
+          type="text"
+          name="review"
+          placeholder="Review"
+          size="175"
+          maxlength="500"
+        />
+        <br />
 
-          <label>
-            score >
-            <select name="rating" required>
-              <option value="one">1</option>
-              <option value="two">2</option>
-              <option value="three">3</option>
-              <option value="four">4</option>
-              <option value="five">5</option>
-              <option value="six">6</option>
-              <option value="seven">7</option>
-              <option value="eight">8</option>
-              <option value="nine">9</option>
-              <option value="ten">10</option>
-            </select>
-          </label>
-          <br />
-          <input type="submit" value="Submit" />
-        </fieldset>
-      </form>
-    </main>
+        <label>
+          score
+
+          <select name="rating">
+            <option value="one">1</option>
+            <option value="two">2</option>
+            <option value="three">3</option>
+            <option value="four">4</option>
+            <option value="five">5</option>
+            <option value="six">6</option>
+            <option value="seven">7</option>
+            <option value="eight">8</option>
+            <option value="nine">9</option>
+            <option value="ten">10</option>
+          </select>
+        </label>
+        <br />
+        <input type="submit" value="Submit" />
+      </fieldset>
+    </form>
+
+    <form method="POST" name="reviewSearch" action="review.php">
+      <fieldset>
+        <legend>Searh Reviews Here</legend>
+        <input
+          type="text"
+          name="Search_name"
+          placeholder="Search Movie name"
+          size="175"
+          maxlength="500"
+        />
+        <br />
+        <input type="submit" value="Submit" />
+      </fieldset>
+    </form>
   </body>
 </html>
