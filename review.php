@@ -7,7 +7,7 @@
 
 <?php
 
-$movie_name = $_POST["movie_name"];
+$movie_name = isset($_POST["movie_name"]) ? $_POST["movie_name"] : null;
 
 if (preg_match("/[^ \r\t\n\f]+$/", $movie_name)) {
 	echo "valid name <br />";
@@ -15,7 +15,7 @@ if (preg_match("/[^ \r\t\n\f]+$/", $movie_name)) {
 	echo "invalid name <br />";
 }
 
-$review = $_POST["review"];
+$review = isset($_POST["review"]) ? $_POST["review"] : null;
 
 if (preg_match("/[^ \r\t\n\f]+$/", $review)) {
 	echo "review <br />";
@@ -23,7 +23,7 @@ if (preg_match("/[^ \r\t\n\f]+$/", $review)) {
 	echo "invalid review <br />";
 }
 
-$rating = $_POST["rating"];
+$rating = isset($_POST["rating"]) ? $_POST["rating"] : null;
 if (preg_match("/[^ \r\t\n\f]+$/", $rating)) {
 	echo "valid rating thank you <br />";
 } else {
@@ -74,7 +74,7 @@ if (preg_match("/[^ \r\t\n\f]+$/", $movie_name) && preg_match("/[^ \r\t\n\f]+$/"
 ?>
 
 <?php
-$search = $_POST["Search_name"];
+$search = isset($_POST["Search_name"]) ? $_POST["Search_name"] : null;
 $sql = "SELECT review, rating, moviename FROM reviews WHERE reviews.moviename = '$search'";
 $result = mysqli_query($db, $sql);
 
