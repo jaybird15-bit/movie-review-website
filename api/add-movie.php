@@ -38,8 +38,8 @@ if (strlen($body->posterUrl) < 1 || strlen($body->posterUrl) > 256) {
     exit();
 }
 
-// Is the synposis too long?
-if (strlen($body->title) > 512) {
+// Is the synopsis too long?
+if (strlen($body->synopsis) > 512) {
     http_response_code(400);
     echo json_encode(
         ["message" => "Synopsis must be less than 512 characters."]
